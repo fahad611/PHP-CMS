@@ -21,7 +21,8 @@
 	<tr>
 		<td><?php
 include ("include/header.php");
- ?></td>
+
+?></td>
 	</tr>
 	<!--Navigation Bar starts -->
 	<tr>
