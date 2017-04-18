@@ -1,18 +1,18 @@
 <?php
-
 session_start();
 
-if(!$_SESSION['admin_name']) {
-
+if (!$_SESSION['admin_name'])
+{
 	header('location:login.php?error=you are not Administrator');
-	
 }
 
 ?>
 <!DOCTYPE html>
 <?php
-include("include/db.php");
-include("admin_panel.php");
+include ("include/db.php");
+
+include ("admin_panel.php");
+
 ?>
 <form action="" method="post">
 <table width="500px" border="3" align="center">
@@ -36,16 +36,16 @@ include("admin_panel.php");
 </form>
 </html>
 <?php
-if (isset($_POST['submit'])) {
+
+if (isset($_POST['submit']))
+{
 	$post_title = $_POST['page_title'];
 	$post_content = $_POST['page_content'];
-
 	$query = "insert into pages (p_title,p_desc) values ('$post_title','$post_content')";
-
-	if (mysqli_query($con,$query)) {
+	if (mysqli_query($con, $query))
+	{
 		echo "<script>window.open('admin_panel.php?inserted=A new page has been inserted...!','_self')</script>";
 	}
 }
-
 
 ?>
