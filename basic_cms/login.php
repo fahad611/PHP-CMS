@@ -1,7 +1,5 @@
 <?php
-	session_start();
-
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,47 +32,47 @@
 </form>
 	<h2 align="center">
 	<?php
-		if (isset($_GET['logout'])) {
-			
-			echo $_GET['logout']; 
-			}
-			?>
+
+if (isset($_GET['logout']))
+{
+	echo $_GET['logout'];
+}
+
+?>
 			</h2>
 
 	<h2 align="center">
-	<?php 
-	if (isset($_GET['error'])) {
-	 echo $_GET['error']; 
-	 	}
-	 ?>
+	<?php
+
+if (isset($_GET['error']))
+{
+	echo $_GET['error'];
+}
+
+?>
 	 </h2>
 </body>
 </html>
 <?php
-include("include/db.php");
+include ("include/db.php");
 
-if (isset($_POST['submit'])) {
-
-	 $admin_name = mysqli_real_escape_string($con,$_POST['admin_name']);
-      $admin_pass = mysqli_real_escape_string($con,$_POST['admin_pass']); 
-
+if (isset($_POST['submit']))
+{
+	$admin_name = mysqli_real_escape_string($con, $_POST['admin_name']);
+	$admin_pass = mysqli_real_escape_string($con, $_POST['admin_pass']);
 	$admin_name = $_SESSION['admin_name'] = $_POST['admin_name'];
 	$admin_pass = $_POST['admin_pass'];
-
 	$query = "select * from admin_login where u_name='$admin_name' AND u_pass='$admin_pass'";
-
-	$run = mysqli_query($con,$query);
-
-
-	if(mysqli_num_rows($run)==1) {
-
+	$run = mysqli_query($con, $query);
+	if (mysqli_num_rows($run) == 1)
+	{
 		header("location: admin_panel.php?logged=You are logged in Succesfully");
 		echo "<script>window.open('admin_panel.php?logged=You are logged in Succesfully!','_self')</script)";
 	}
-	else {
+	else
+	{
 		echo "<script>alert('user name or password is incorrect')</script>";
 	}
 }
-
 
 ?>
