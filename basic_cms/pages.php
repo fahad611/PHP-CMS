@@ -19,25 +19,28 @@
 <table width="1000px" border="2" align="center">
 	<!-- Header starts -->
 	<tr>
-		<td><?php include("include/header.php"); ?></td>
+		<td><?php
+include ("include/header.php");
+ ?></td>
 	</tr>
 	<!--Navigation Bar starts -->
 	<tr>
 		<td>
 			<table border="0px">
 			<tr>
-				<?php 
-				include("include/db.php");
-				$query = "select * from menus";
+				<?php
+include ("include/db.php");
 
-				$run = mysqli_query($con,$query);
-				while ($row=mysqli_fetch_array($run)) {
-					$m_title = $row[1];
-					echo "<td bgcolor ='black' width='100px' align='center'><a href='pages.php?pages=$m_title'>$m_title</a></td>";
-				}
+$query = "select * from menus";
+$run = mysqli_query($con, $query);
 
+while ($row = mysqli_fetch_array($run))
+{
+	$m_title = $row[1];
+	echo "<td bgcolor ='black' width='100px' align='center'><a href='pages.php?pages=$m_title'>$m_title</a></td>";
+}
 
-				 ?>
+?>
 			</tr>
 				</table>
 		</td>
@@ -48,19 +51,16 @@
 		<table border="0" width="800px" align="center"></table>
 		<tr>
 		<?php
+$page = $_GET['pages'];
+$query = "select * from pages where p_title='$page'";
+$run = mysqli_query($con, $query);
 
-		$page = $_GET['pages'];
+while ($row = mysqli_fetch_assoc($run))
+{
+	echo "<td bgcolor='aqua'>" . "<h2>" . $row['p_title'] . "</h2>" . "<br />" . $row['p_desc'] . "</td>";
+}
 
-		$query = "select * from pages where p_title='$page'";
-		$run = mysqli_query($con,$query);
-
-		while ($row=mysqli_fetch_assoc($run)) {
-			echo "<td bgcolor='aqua'>"."<h2>".$row['p_title']."</h2>"."<br>".$row['p_desc']."</td>";
-		}
-		
-
-
-		?>
+?>
 			
 		</tr>
 		</table>
