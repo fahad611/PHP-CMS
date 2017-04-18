@@ -16,25 +16,28 @@
 <table width="1000px" border="2" align="center">
 	<!-- Header starts -->
 	<tr>
-		<td><?php include("include/header.php"); ?></td>
+		<td><?php
+include ("include/header.php");
+ ?></td>
 	</tr>
 	<!--Navigation Bar starts -->
 	<tr>
 		<td>
 			<table border="0px">
 			<tr>
-				<?php 
-				include("include/db.php");
-				$query = "select * from menus";
+				<?php
+include ("include/db.php");
 
-				$run = mysqli_query($con,$query);
-				while ($row=mysqli_fetch_array($run)) {
-					$m_title = $row[1];
-					echo "<td bgcolor ='black' width='100px' align='center'><a href='pages.php?pages=$m_title'>$m_title</a></td>";
-				}
+$query = "select * from menus";
+$run = mysqli_query($con, $query);
 
+while ($row = mysqli_fetch_array($run))
+{
+	$m_title = $row[1];
+	echo "<td bgcolor ='black' width='100px' align='center'><a href='pages.php?pages=$m_title'>$m_title</a></td>";
+}
 
-				 ?>
+?>
 			</tr>
 				</table>
 		</td>
